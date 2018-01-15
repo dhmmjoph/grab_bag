@@ -1,0 +1,9 @@
+# VRCMatchUpdater
+A python script for monitoring the status of a given team during a VRC event. Updates about new match results (since the last time the script was run) are generated and send to IFTTT via their [maker channel](https://ifttt.com/maker). The messages are short enough to be useful as tweets, but you could do whatever you wanted with them. Designed to be run at regular intervals (e.g., every 5 minutes) automatically (e.g., via cron). Gets data from [the VexDB API](http://vexdb.io/the_data).
+
+You'll need to do the following things to run this script:
+
+1. Install [the pyshorteners module](https://github.com/ellisonleao/pyshorteners). Following the instructions on [this page](https://developers.google.com/url-shortener/v1/getting_started?hl=en), obtain a Google URL Shortener API key and put that key in a file called "URLShortenerKey" in the same directory as the script. Alternately, you could modify the code (per the instructions in the pyshorteners readme) to use a different URL shortener which doesn't require an API key.
+2. Log in to IFTTT and connect the [maker channel](https://ifttt.com/maker). After connecting the channel, that page will display your API key. Save the key to a file, "ifkey.txt", in the same directory as the script.
+3. Near the top of the script, two string variables are written, "team" and "eventSKU". "team" should be the team number you want to follow. "eventSKU" defines the event whose matches you want to monitor. It's of the format "RE-VRC-##-####" and can be found in the URL of the RobotEvents (or VexDB) page for a given event. Change the "team" and "eventSKU" variables to reflect the team and event you want to monitor.
+4. Configure the script to run at regular intervals (e.g., 5 minutes). On unix systems, this is probably best done using the [cron](https://help.ubuntu.com/community/CronHowto) scheduling service.
